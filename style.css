@@ -1,0 +1,253 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fce4ec; /* Light pink background */
+    color: #333;
+    text-align: center;
+}
+
+header {
+    background-color: #f06292; /* Deeper pink */
+    color: white;
+    padding: 2em 0;
+    border-bottom: 5px solid #ec407a; /* Slightly darker pink border */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    background-color: white;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    max-width: 800px;
+    text-align: left;
+}
+
+section h2 {
+    color: #c2185b; /* Darker pink for section headers */
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+.heart {
+    color: #e91e63; /* Bright pink for hearts */
+    font-size: 1.2em;
+}
+
+#love-letter p {
+    line-height: 1.6;
+    margin-bottom: 1em;
+    font-size: 1.1em;
+}
+
+#love-letter .signature {
+    text-align: right;
+    font-style: italic;
+    margin-top: 30px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.gallery-item img, .gallery-item.placeholder {
+    width: 100%;
+    height: 200px; /* Fixed height for consistency */
+    object-fit: cover; /* Ensures images cover the area well */
+    border-radius: 8px;
+    border: 3px solid #f8bbd0; /* Light pink border for images */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item.placeholder {
+    background-color: #fdecf2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ad1457;
+    font-style: italic;
+}
+
+.gallery-item img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.chain-grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.chain-item.placeholder {
+    padding: 20px;
+    background-color: #fdecf2;
+    border-radius: 8px;
+    border: 2px solid #f06292;
+    color: #ad1457;
+    font-weight: bold;
+    text-align: center;
+    min-width: 100px;
+}
+
+.arrow {
+    font-size: 2em;
+    color: #e91e63;
+    margin: 0 10px;
+}
+
+/* Styles for #reasons ul, li, etc. were here, ensure they are preserved if this insertion point is different */
+/* The original search was for .gallery-item img:hover { which is correct */
+
+/* Make sure the next rule is #reasons ul or similar */
+/* #reasons ul{ 
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+} */
+
+#reasons ul {
+    list-style-type: none; /* Remove default bullets */
+    padding: 0;
+}
+
+#reasons li {
+    background-color: #fce4ec; /* Light pink background for list items */
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    border-left: 5px solid #e91e63; /* Pink accent border */
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+}
+
+#reasons li:hover {
+    background-color: #f8bbd0;
+}
+
+#reasons li::before {
+    content: "❤ "; /* Heart bullet */
+    color: #e91e63;
+    margin-right: 10px;
+}
+
+footer {
+    background-color: #f06292;
+    color: white;
+    padding: 1.5em 0;
+    margin-top: 30px;
+    font-size: 0.9em;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+/* Basic animation for hearts */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.heart {
+    display: inline-block; /* Needed for transform */
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .chain-grid {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center them when stacked */
+    }
+    .arrow {
+        transform: rotate(90deg); /* Rotate arrow for vertical flow */
+        margin: 10px 0; /* Adjust margin for vertical arrows */
+    }
+}
+
+.floating-heart {
+    position: fixed; /* Changed from absolute to fixed for viewport positioning */
+    bottom: -50px; /* Start below the viewport */
+    font-size: 20px; /* Adjust size as needed */
+    color: #e91e63; /* Heart color */
+    pointer-events: none; /* So they don't interfere with clicks */
+    animation: floatUp 5s linear forwards;
+    opacity: 0.8;
+    z-index: 9999; /* Ensure they are on top */
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-100vh) translateX(var(--random-x)) rotate(var(--random-rotate)); /* Fly to top and sway */
+        opacity: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 2em;
+    }
+    section h2 {
+        font-size: 1.5em;
+    }
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+    .gallery-item img, .gallery-item.placeholder {
+        height: 150px;
+    }
+    .chain-item.placeholder {
+        padding: 15px;
+        font-size: 0.9em;
+        min-width: 80px;
+    }
+    .arrow {
+        font-size: 1.5em;
+    }
+}
+
+.floating-heart {
+    position: fixed; /* Changed from absolute to fixed for viewport positioning */
+    bottom: -50px; /* Start below the viewport */
+    font-size: 20px; /* Adjust size as needed */
+    color: #e91e63; /* Heart color */
+    pointer-events: none; /* So they don't interfere with clicks */
+    animation: floatUp 5s linear forwards;
+    opacity: 0.8;
+    z-index: 9999; /* Ensure they are on top */
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-100vh) translateX(var(--random-x)) rotate(var(--random-rotate)); /* Fly to top and sway */
+        opacity: 0;
+    }
+}
